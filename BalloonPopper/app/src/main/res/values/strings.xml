@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BalloonPopper</string>
+    <string name="WARNING_TAG">\"Oh no!\"</string>
+</resources>
