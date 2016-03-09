@@ -24,8 +24,11 @@ public class MainMenuSurfaceView extends SurfaceView implements SurfaceHolder.Ca
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         System.out.println("HELLO");
-        Intent i = new Intent().setClass(getContext(), GameScreenActivity.class);
-        getContext().startActivity(i);
+        Intent i = new Intent().setClass(getContext(), GameScreenActivity.class);//THESE TWO LINES ARE IMPORTANT
+        getContext().startActivity(i);//THESE TWO LINES ARE IMPORTANT
+        /*
+        They allow us to swap between different Activities from within the SurfaceViews
+         */
     }
 
     @Override

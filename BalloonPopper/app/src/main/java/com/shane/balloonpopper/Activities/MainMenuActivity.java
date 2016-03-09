@@ -8,6 +8,9 @@ import android.view.WindowManager;
 import com.shane.balloonpopper.Views.MainMenuSurfaceView;
 
 public class MainMenuActivity extends Activity {
+    /*
+    These activities will call a surfaceview which then
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
