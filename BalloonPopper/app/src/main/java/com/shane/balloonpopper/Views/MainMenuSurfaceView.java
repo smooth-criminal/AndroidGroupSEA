@@ -23,7 +23,7 @@ public class MainMenuSurfaceView extends SurfaceView implements SurfaceHolder.Ca
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        System.out.println("HELLO");
+        System.out.println("This is the Main Menu!");
         Intent i = new Intent().setClass(getContext(), GameScreenActivity.class);
         getContext().startActivity(i);
     }
