@@ -13,12 +13,14 @@ import com.shane.balloonpopper.Objects.GameObjects.GameBackGround;
 import com.shane.balloonpopper.Objects.GameObjects.Balloon;
 import com.shane.balloonpopper.R;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * Created by Shane on 14/12/2015.
  */
+
 public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callback{
     private GameThread thread;
     private GameBackGround bg;
@@ -85,7 +87,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         System.out.println("Pointer X: "+event.getX()+" Pointer Y: "+event.getY());
         for(int i =0; i<balloons.size(); i++){
             System.out.println(" Balloon X: "+balloons.get(i).getX()+ " Balloon Y: "+balloons.get(i).getY());
-            ////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!COLLISION DETECTION!!!!!!!!!!!!!!!!!!!!!!!!!///////////////////////////////////
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!COLLISION DETECTION!!!!!!!!!!!!!!!!!!!!!!!!!//
             if(collision((balloons.get(i).getRectangle()), (int)event.getX()/scaleFactorX, (int)event.getY()/scaleFactorY)){
                 System.out.println("Collision detected");
                 balloons.remove(i);
@@ -111,11 +113,32 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     public void addBalloons(){
         long balloonElapsed = (System.nanoTime()-balloonStartTime)/million;
         if(balloonElapsed>20000/score){
+
+
+
+            //PROBLEM BELOW:make sure balloons cannot be too wide as cuts off lots of balloon
+
+            ArrayList<String> balloonRandom = new ArrayList<String>();
+
+            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\green_balloon");
+            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\lightblue_balloon");
+            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\pink_balloon");
+            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\purple_balloon");
+            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\red_balloon");
+            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\turquoise_balloon");
+            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\yellow_balloon");
+
             int x = rand.nextInt(WIDTH);
-            balloons.add(new Balloon(x, HEIGHT+50, 50, 50, score, BitmapFactory.decodeResource(getResources(), R.drawable
-                    .balloon_blue)));//adds new
+            balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory.decodeResource(getResources(), R.drawable.pink_balloon) ));//adds new
+
+
+
+
+           // URL imageUrl = this.getClass().getResource("/drawable/green_balloon.png");
+           // .setIcon(new javax.swing.ImageIcon(imageUrl));
             // balloon to array of balloons, where x is random within screen range, and y is offscreen.
             balloonStartTime=System.nanoTime();
+
         }
         //reset timer
 
@@ -131,7 +154,22 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         // balloon to array of balloons, where x is random within screen range, and y is offscreen.
 
         // score.setScore((score.getScore()+1));
+
+
+    for(int i = 0; i<balloons.size();i++)
+    {
+        //update missile
+        balloons.get(i).update();
+
+
+        //remove missile if it is way off the screen
+        if(balloons.get(i).getY()<-200)
+        {
+            balloons.remove(i);
+            break;
+        }
     }
+}
 
 
     @Override
