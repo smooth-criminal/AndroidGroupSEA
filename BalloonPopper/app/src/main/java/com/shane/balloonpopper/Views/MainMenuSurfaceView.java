@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.shane.balloonpopper.Activities.GameScreenActivity;
 import com.shane.balloonpopper.Objects.GameObjects.GameBackGround;
 import com.shane.balloonpopper.Objects.MenuObjects.MenuBackGround;
+import com.shane.balloonpopper.Objects.MenuObjects.MenuButton;
 import com.shane.balloonpopper.OtherEngine.MenuThread;
 import com.shane.balloonpopper.R;
 
@@ -21,8 +24,10 @@ public class MainMenuSurfaceView extends SurfaceView implements SurfaceHolder.Ca
 
     public static final int WIDTH = 480;
     public static final int HEIGHT = 800;
+    private MenuButton butt;
     private MenuBackGround bg;
     private MenuThread thread;
+
 
     float scaleFactorX;
     float scaleFactorY;
@@ -41,7 +46,7 @@ public class MainMenuSurfaceView extends SurfaceView implements SurfaceHolder.Ca
     public void surfaceCreated(SurfaceHolder holder) {
         System.out.println("HELLO");
         bg = new MenuBackGround(BitmapFactory.decodeResource(getResources(), (R.drawable.mainmenubackground)));
-
+        butt = new MenuButton(50, 1000, 500, 500, BitmapFactory.decodeResource(getResources(), (R.drawable.startgamebutton)));
         scaleFactorX = getWidth()/(WIDTH*1.f);
         scaleFactorY = getHeight()/(HEIGHT*1.f);
 
@@ -71,17 +76,51 @@ public class MainMenuSurfaceView extends SurfaceView implements SurfaceHolder.Ca
         }
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event){
+
+        checkForCollision(event);
+        return super.onTouchEvent(event);
+    }
+    public void checkForCollision(MotionEvent event){
+
+        System.out.println("Pointer X: " + event.getX() + " Pointer Y: " + event.getY());
+        System.out.println("Button X: "+butt.getX()+" Button Y: "+ butt.getY());
+            if(collision((butt.getRectangle()), (int)event.getX(), (int)event.getY())){
+                System.out.println("Collision detected");
+                Intent i = new Intent().setClass(getContext(), GameScreenActivity.class);//THESE TWO LINES ARE IMPORTANT
+                getContext().startActivity(i);
+            }else{
+                System.out.println("No collision detected.");
+            }
+        }
+
+
+    public boolean collision(Rect rect, float xCoord, float yCoord){
+        if(rect.contains((int)xCoord,(int) yCoord)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
     public void update(){
         bg.update();
     }
 
     @Override
     public void draw(Canvas canvas){
+        super.draw(canvas);
         if(canvas!=null){
             final int savedState = canvas.save();//saved state of canvas size
-            canvas.scale(scaleFactorX, scaleFactorY);//scales canvas to phone width
             //DRAW HERE IN ORDER FROM BACK TO FRONT
-            bg.draw(canvas);//Background first
+            bg.draw(canvas);
+            butt.draw(canvas);
+
+
+            canvas.scale(scaleFactorX, scaleFactorY);//scales canvas to phone width
+
+            //Background first
             canvas.restoreToCount(savedState);//returns to unscaled dimensions
         }
     }
