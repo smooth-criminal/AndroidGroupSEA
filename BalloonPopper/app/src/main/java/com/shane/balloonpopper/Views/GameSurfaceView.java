@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -139,4 +141,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             canvas.restoreToCount(savedState);//returns to unscaled dimensions
         }
     }
+
+
+
 }
