@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.shane.balloonpopper.Views.GameSurfaceView;
 import com.shane.balloonpopper.Views.MainMenuSurfaceView;
 
 public class MainMenuActivity extends Activity {
@@ -13,6 +14,7 @@ public class MainMenuActivity extends Activity {
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+System.out.println("1");
         super.onCreate(savedInstanceState);
 
         //Turn title off

@@ -12,15 +12,15 @@ public class GameThread extends Thread {
     private final int FPS = 30;
     private double averageFPS;
     private SurfaceHolder surfaceHolder;
-    private GameSurfaceView gamePanel;
+    private GameSurfaceView gameSV;
     private boolean running;
     public static Canvas canvas;
     public final int million = 1000000;//I'll be using million a lot, so I just want to make sure I don't have to check everytime if I made a typo.
 
-    public GameThread(SurfaceHolder surfaceHolder, GameSurfaceView gamePanel) {
+    public GameThread(SurfaceHolder surfaceHolder, GameSurfaceView gameSV) {
         super();
         this.surfaceHolder = surfaceHolder;
-        this.gamePanel = gamePanel;
+        this.gameSV = gameSV;
     }
 
     @Override
@@ -39,8 +39,8 @@ public class GameThread extends Thread {
             try {
                 canvas = this.surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder) {
-                    this.gamePanel.update();
-                    this.gamePanel.draw(canvas);
+                    this.gameSV.update();
+                    this.gameSV.draw(canvas);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -67,9 +67,7 @@ public class GameThread extends Thread {
                 frameCount = 0;
                 totalTime = 0;
                 System.out.println("Average FPS: " + averageFPS);
-
             }
-
         }
     }
 
