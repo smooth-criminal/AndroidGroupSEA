@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
+import com.shane.balloonpopper.FileInputOutput.RandomBalloon;
 import com.shane.balloonpopper.OtherEngine.GameThread;
 import com.shane.balloonpopper.Objects.GameObjects.GameBackGround;
 import com.shane.balloonpopper.Objects.GameObjects.Balloon;
@@ -64,6 +65,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         rand = new Random();
 
         balloons = new ArrayList<>();
+
         balloonStartTime = System.nanoTime();
         score = 7;
         scaleFactorX = getWidth()/(WIDTH*1.f);
@@ -118,7 +120,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
             //PROBLEM BELOW:make sure balloons cannot be too wide as cuts off lots of balloon
 
-            ArrayList<String> balloonRandom = new ArrayList<String>();
+         //   ArrayList<String> balloonRandom = new ArrayList<String>();
+/*
 
             balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\green_balloon");
             balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\lightblue_balloon");
@@ -127,12 +130,15 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\red_balloon");
             balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\turquoise_balloon");
             balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\yellow_balloon");
+*/
+
+
 
             int x = rand.nextInt(WIDTH);
             balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory.decodeResource(getResources(), R.drawable.pink_balloon) ));//adds new
 
-
-
+            balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory.decodeResource
+                            (getResources(RandomBalloon()))));
 
            // URL imageUrl = this.getClass().getResource("/drawable/green_balloon.png");
            // .setIcon(new javax.swing.ImageIcon(imageUrl));
