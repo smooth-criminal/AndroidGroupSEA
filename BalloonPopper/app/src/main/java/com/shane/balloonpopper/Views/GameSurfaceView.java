@@ -4,9 +4,12 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.ImageView;
 
 import com.shane.balloonpopper.FileInputOutput.RandomBalloon;
 import com.shane.balloonpopper.OtherEngine.GameThread;
@@ -34,6 +37,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     public int million = 1000000;
     private Random rand;
     private int score;
+
+    private imageView view;
 
     float scaleFactorX;
     float scaleFactorY;
@@ -120,25 +125,40 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
             //PROBLEM BELOW:make sure balloons cannot be too wide as cuts off lots of balloon
 
-         //   ArrayList<String> balloonRandom = new ArrayList<String>();
-/*
+             int[] balloonRandom = {
 
-            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\green_balloon");
+                    R.drawable.yellow_balloon,
+                    R.drawable.green_balloon,
+                    R.drawable.lightblue_balloon,
+                    R.drawable.pink_balloon,
+                    R.drawable.turquoise_balloon,
+                    R.drawable.red_balloon,
+                    R.drawable.purple_balloon,
+            };
+
+            /*        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\green_balloon");
             balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\lightblue_balloon");
             balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\pink_balloon");
             balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\purple_balloon");
             balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\red_balloon");
             balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\turquoise_balloon");
-            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\yellow_balloon");
-*/
-
-
+            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\yellow_balloon");*/
 
             int x = rand.nextInt(WIDTH);
-            balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory.decodeResource(getResources(), R.drawable.pink_balloon) ));//adds new
 
-            balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory.decodeResource
-                            (getResources(RandomBalloon()))));
+            Drawable d = getResources().getDrawable(balloonRandom[]);
+
+
+
+
+
+            balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory
+                    .decodeByteArray(balloonRandom, 0, );
+
+            balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory.decodeResource(
+            (getResources(), R.drawable.pink_balloon)));//adds new
+
+            //balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapDrawable.createFromPath()
 
            // URL imageUrl = this.getClass().getResource("/drawable/green_balloon.png");
            // .setIcon(new javax.swing.ImageIcon(imageUrl));

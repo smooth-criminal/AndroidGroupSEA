@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
@@ -13,6 +14,8 @@ public class Balloon  extends GameObject{
     private int speed;
     private Random rand = new Random();
 
+    private Random randomGenerator;
+    ArrayList<String> balloonRandom = new ArrayList<String>();
 
     public Balloon(int x, int y, int width, int height, int score, Bitmap image) {
 
@@ -39,5 +42,32 @@ public class Balloon  extends GameObject{
         canvas.drawBitmap(image, x, y, null);
     }
 
+
+    public void createBalloonArray() {
+
+        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\green_balloon");
+        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\lightblue_balloon");
+        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\pink_balloon");
+        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\purple_balloon");
+        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\red_balloon");
+        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\turquoise_balloon");
+        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\yellow_balloon");
+
+    }
+
+
+    /*public RandomBalloon()
+    {
+        balloonRandom = new ArrayList<String>();
+        randomGenerator = new Random();
+    }*/
+
+    public String anyBalloon()
+    {
+        int index = randomGenerator.nextInt(balloonRandom.size());
+        String string = balloonRandom.get(index);
+        System.out.println("The " + string + " was used.");
+        return string;
+    }
 
 }
