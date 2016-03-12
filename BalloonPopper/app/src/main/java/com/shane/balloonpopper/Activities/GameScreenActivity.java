@@ -1,10 +1,12 @@
 package com.shane.balloonpopper.Activities;
 
 import android.app.Activity;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.shane.balloonpopper.R;
 import com.shane.balloonpopper.Views.GameSurfaceView;
 
 /**
