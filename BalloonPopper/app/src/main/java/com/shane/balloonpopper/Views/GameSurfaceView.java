@@ -4,7 +4,9 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.AsyncTask;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -21,7 +23,9 @@ import java.util.Random;
 /**
  * Created by Shane on 14/12/2015.
  */
-public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callback{
+public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
+    private MediaPlayer pop;
+    private int soundID;
     private GameThread thread;
     private GameBackGround bg;
     private Balloon balloon;
@@ -42,33 +46,39 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         super(context);
         //add the callback to the surfaceHolder to intercept events
         getHolder().addCallback(this);
+
         thread = new GameThread(getHolder(), this);
         setFocusable(true);
     }
-    @Override
-    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height){}
 
     @Override
-    public void surfaceDestroyed(SurfaceHolder holder){
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
         boolean retry = true;
-        while(retry){
-            try{thread.setRunning(false);
-            thread.join();
-            } catch (InterruptedException e){e.printStackTrace();}
+        while (retry) {
+            try {
+                thread.setRunning(false);
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             retry = false;
         }
     }
 
     @Override
-    public void surfaceCreated(SurfaceHolder holder){
+    public void surfaceCreated(SurfaceHolder holder) {
         bg = new GameBackGround(BitmapFactory.decodeResource(getResources(), (R.drawable.backgroundcloud)));
         rand = new Random();
 
         balloons = new ArrayList<>();
         balloonStartTime = System.nanoTime();
         score = 7;
-        scaleFactorX = getWidth()/(WIDTH*1.f);
-        scaleFactorY = getHeight()/(HEIGHT*1.f);
+        scaleFactorX = getWidth() / (WIDTH * 1.f);
+        scaleFactorY = getHeight() / (HEIGHT * 1.f);
 
         //Start the game loop here
         thread.setRunning(true);
@@ -77,66 +87,65 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event){
-
-           checkForCollision(event);
-         return super.onTouchEvent(event);
+    public boolean onTouchEvent(MotionEvent event) {
+        checkForCollision(event);
+        return super.onTouchEvent(event);
     }
 
-    public void checkForCollision(MotionEvent event){
+    public void checkForCollision(MotionEvent event) {
 
-        System.out.println("Pointer X: "+event.getX()+" Pointer Y: "+event.getY());
-        for(int i =0; i<balloons.size(); i++){
-            System.out.println(" Balloon X: "+balloons.get(i).getX()+ " Balloon Y: "+balloons.get(i).getY());
+        System.out.println("Pointer X: " + event.getX() + " Pointer Y: " + event.getY());
+        for (int i = 0; i < balloons.size(); i++) {
+            System.out.println(" Balloon X: " + balloons.get(i).getX() + " Balloon Y: " + balloons.get(i).getY());
             ////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!COLLISION DETECTION!!!!!!!!!!!!!!!!!!!!!!!!!///////////////////////////////////
-            if(collision((balloons.get(i).getRectangle()), (int)event.getX()/scaleFactorX, (int)event.getY()/scaleFactorY)){
+            if (collision((balloons.get(i).getRectangle()), (int) event.getX() / scaleFactorX, (int) event.getY() / scaleFactorY)) {
                 System.out.println("Collision detected");
                 balloons.remove(i);
+
                 score++;
                 break;
-            }else{
+            } else {
                 System.out.println("No collision detected.");
             }
         }
     }
 
-    public boolean collision(Rect rect, float xCoord, float yCoord){
-        if(rect.contains((int)xCoord,(int) yCoord)){
+    public boolean collision(Rect rect, float xCoord, float yCoord) {
+        if (rect.contains((int) xCoord, (int) yCoord)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
 
-    public void addBalloons(){
-        long balloonElapsed = (System.nanoTime()-balloonStartTime)/million;
-        if(balloonElapsed>20000/score){
+    public void addBalloons() {
+        long balloonElapsed = (System.nanoTime() - balloonStartTime) / million;
+        if (balloonElapsed > 20000 / score) {
             int x = rand.nextInt(WIDTH);
-            balloons.add(new Balloon(x, HEIGHT+50, 80, 90, score, BitmapFactory.decodeResource(getResources(), R.drawable
+            balloons.add(new Balloon(x, HEIGHT + 50, 80, 90, score, BitmapFactory.decodeResource(getResources(), R.drawable
                     .balloon_blue)));//adds new
             // balloon to array of balloons, where x is random within screen range, and y is offscreen.
-            balloonStartTime=System.nanoTime();
+            balloonStartTime = System.nanoTime();
         }
     }
 
-    public void update(){
+    public void update() {
         bg.update();
-        for(int i =0; i<balloons.size(); i++){
+        for (int i = 0; i < balloons.size(); i++) {
             balloons.get(i).update();
-            }
+        }
         addBalloons();
     }
 
 
     @Override
-    public void draw(Canvas canvas){
-        if(canvas!=null){
+    public void draw(Canvas canvas) {
+        if (canvas != null) {
             final int savedState = canvas.save();//saved state of canvas size
             canvas.scale(scaleFactorX, scaleFactorY);//scales canvas to phone width
             //DRAW HERE IN ORDER FROM BACK TO FRONT
             bg.draw(canvas);//Background first
-            for(int i =0; i<balloons.size(); i++){
+            for (int i = 0; i < balloons.size(); i++) {
                 balloons.get(i).draw(canvas);
             }
             canvas.restoreToCount(savedState);//returns to unscaled dimensions
@@ -145,4 +154,10 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
 
 
+
+
 }
+
+
+
+

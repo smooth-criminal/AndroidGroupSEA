@@ -1,7 +1,10 @@
 package com.shane.balloonpopper.Activities;
 
 import android.app.Activity;
+import android.content.Loader;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
@@ -13,6 +16,9 @@ import com.shane.balloonpopper.Views.GameSurfaceView;
  * Created by Shane on 09/03/2016.
  */
 public class GameScreenActivity extends Activity{
+    private SoundPool soundPool;
+    private int soundID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,9 +29,19 @@ public class GameScreenActivity extends Activity{
         //Set to fullscreen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        //SetupSound
+        setupSound();
+
         setContentView(new GameSurfaceView(this));
 
 
     }
 
+    public void setupSound(){
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
+        soundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+
+        soundID = soundPool.load(this, R.raw.pop, 1);
+    }
 }

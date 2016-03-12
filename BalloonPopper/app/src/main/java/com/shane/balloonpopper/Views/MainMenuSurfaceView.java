@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.media.MediaPlayer;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -44,6 +45,9 @@ public class MainMenuSurfaceView extends SurfaceView implements SurfaceHolder.Ca
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+        MediaPlayer mediaPlayer = MediaPlayer.create(getContext(), R.raw.song);
+        mediaPlayer.start();
+
         System.out.println("HELLO");
         bg = new MenuBackGround(BitmapFactory.decodeResource(getResources(), (R.drawable.mainmenubackground)));
         butt = new MenuButton(50, 1000, 500, 500, BitmapFactory.decodeResource(getResources(), (R.drawable.startgamebutton)));
