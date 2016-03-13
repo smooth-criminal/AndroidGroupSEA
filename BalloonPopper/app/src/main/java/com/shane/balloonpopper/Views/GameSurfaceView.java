@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -31,6 +33,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     public int million = 1000000;
     private Random rand;
     private int score;
+    public static int balloonSeconds;
 
     float scaleFactorX;
     float scaleFactorY;
@@ -99,11 +102,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     public boolean collision(Rect rect, float xCoord, float yCoord){
         if(rect.contains((int)xCoord,(int) yCoord)){
-            System.out.println("YEAH");
             return true;
         }
         else{
-            System.out.println("NAW MATE");
             return false;
         }
     }
@@ -112,13 +113,11 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         long balloonElapsed = (System.nanoTime()-balloonStartTime)/million;
         if(balloonElapsed>20000/score){
             int x = rand.nextInt(WIDTH);
-            balloons.add(new Balloon(x, HEIGHT+50, 50, 50, score, BitmapFactory.decodeResource(getResources(), R.drawable
+            balloons.add(new Balloon(x, HEIGHT+50, 80, 90, score, BitmapFactory.decodeResource(getResources(), R.drawable
                     .balloon_blue)));//adds new
             // balloon to array of balloons, where x is random within screen range, and y is offscreen.
             balloonStartTime=System.nanoTime();
         }
-        //reset timer
-
     }
 
     public void update(){
@@ -127,16 +126,11 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             balloons.get(i).update();
             }
         addBalloons();
-        //balloons.add(new Balloon(200, 200, 50, 50, score, BitmapFactory.decodeResource(getResources(), R.drawable.balloon_blue)));//adds new
-        // balloon to array of balloons, where x is random within screen range, and y is offscreen.
-
-        // score.setScore((score.getScore()+1));
     }
 
 
     @Override
     public void draw(Canvas canvas){
-
         if(canvas!=null){
             final int savedState = canvas.save();//saved state of canvas size
             canvas.scale(scaleFactorX, scaleFactorY);//scales canvas to phone width
@@ -147,6 +141,12 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             }
             canvas.restoreToCount(savedState);//returns to unscaled dimensions
         }
-
     }
+<<<<<<< HEAD
 }
+=======
+
+
+
+}
+>>>>>>> refs/remotes/origin/ShaneBranch
