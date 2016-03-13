@@ -40,6 +40,7 @@ public class GameThread extends Thread {
                 canvas = this.surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder) {
                     this.gameSV.update();
+                    checkFor10Seconds();//Create method that will check if the player has popped a balloon within 10 seconds
                     this.gameSV.draw(canvas);
                 }
             } catch (Exception e) {
@@ -73,5 +74,23 @@ public class GameThread extends Thread {
 
     public void setRunning(Boolean b) {
         running = b;
+    }
+
+    public boolean checkFor10Seconds(){
+        /*
+        Check if player has popped a balloon within 10 seconds.
+         */
+                        /*
+                If(one second has passed)
+                {
+                Increase GameSurfaceView.balloonSeconds by 1
+                    If(GameSurfaceView.balloonSeconds == 10){
+                    Intent i = new Intent().setClass(getContext(), MainMenuActivity.class);//THESE TWO LINES ARE IMPORTANT
+                    getContext().startActivity(i);//THESE TWO LINES ARE IMPORTANT
+                    }
+                }
+
+                //Gets checked every loop of the game loop
+                 */
     }
 }

@@ -33,6 +33,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     public int million = 1000000;
     private Random rand;
     private int score;
+    public static int balloonSeconds;
 
     float scaleFactorX;
     float scaleFactorY;
