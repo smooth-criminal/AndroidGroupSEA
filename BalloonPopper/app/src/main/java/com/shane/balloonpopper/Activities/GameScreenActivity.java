@@ -1,16 +1,14 @@
 package com.shane.balloonpopper.Activities;
 
 import android.app.Activity;
-import android.content.Loader;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.shane.balloonpopper.R;
-import com.shane.balloonpopper.Views.GameSurfaceView;
+import com.shane.balloonpopper.SurfaceViews.GameSurfaceView;
 
 /**
  * Created by Shane on 09/03/2016.

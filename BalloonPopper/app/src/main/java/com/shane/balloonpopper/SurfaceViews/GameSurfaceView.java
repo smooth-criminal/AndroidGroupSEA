@@ -1,11 +1,10 @@
-package com.shane.balloonpopper.Views;
+package com.shane.balloonpopper.SurfaceViews;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -102,8 +101,10 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             ////////////////////!!!!!!!!!!!!!!!!!!!!!!!!!!!COLLISION DETECTION!!!!!!!!!!!!!!!!!!!!!!!!!///////////////////////////////////
             if (collision((balloons.get(i).getRectangle()), (int) event.getX() / scaleFactorX, (int) event.getY() / scaleFactorY)) {
                 System.out.println("Collision detected");
-                balloons.remove(i);
                 popSoundPool.play(popID, 1, 1, 1, 0, 1);
+                balloons.get(i).setPop(1);
+                balloons.get(i).setSpeed(0);
+                balloons.get(i).update();
                 score++;
                 break;
             } else {
@@ -113,19 +114,15 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     }
 
     public boolean collision(Rect rect, float xCoord, float yCoord) {
-        if (rect.contains((int) xCoord, (int) yCoord)) {
-            return true;
-        } else {
-            return false;
-        }
+        return rect.contains((int) xCoord, (int) yCoord);
     }
 
     public void addBalloons() {
         long balloonElapsed = (System.nanoTime() - balloonStartTime) / million;
-        if (balloonElapsed > 200 / score) {
+        if (balloonElapsed > 50000 / score) {
             int x = rand.nextInt(WIDTH);
-            balloons.add(new Balloon(x, HEIGHT + 50, 80, 90, score, BitmapFactory.decodeResource(getResources(), R.drawable
-                    .balloon_blue)));//adds new
+            balloons.add(new Balloon(x, HEIGHT + 50, score, BitmapFactory.decodeResource(getResources(), R.drawable
+                    .balloon_spritesheet)));//adds new spritesheet
             // balloon to array of balloons, where x is random within screen range, and y is offscreen.
             balloonStartTime = System.nanoTime();
         }

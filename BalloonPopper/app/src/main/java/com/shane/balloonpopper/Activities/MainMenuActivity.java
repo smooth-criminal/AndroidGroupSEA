@@ -7,8 +7,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.shane.balloonpopper.R;
-import com.shane.balloonpopper.Views.GameSurfaceView;
-import com.shane.balloonpopper.Views.MainMenuSurfaceView;
+import com.shane.balloonpopper.SurfaceViews.MainMenuSurfaceView;
 
 public class MainMenuActivity extends Activity {
     /*
@@ -19,7 +18,8 @@ public class MainMenuActivity extends Activity {
 System.out.println("1");
         super.onCreate(savedInstanceState);
 
-
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.song);
+        mediaPlayer.start();
         //Turn title off
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
@@ -27,9 +27,7 @@ System.out.println("1");
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(new MainMenuSurfaceView(this));
-
-
-    }
+}
 
 }
 

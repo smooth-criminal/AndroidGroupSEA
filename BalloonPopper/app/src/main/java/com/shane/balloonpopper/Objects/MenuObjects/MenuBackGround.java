@@ -3,8 +3,6 @@ package com.shane.balloonpopper.Objects.MenuObjects;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-import com.shane.balloonpopper.Views.GameSurfaceView;
-
 /**
  * Created by Shane on 10/03/2016.
  */
