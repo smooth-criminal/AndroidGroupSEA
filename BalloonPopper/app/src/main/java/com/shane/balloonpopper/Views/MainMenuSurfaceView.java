@@ -11,10 +11,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.shane.balloonpopper.Activities.GameScreenActivity;
-import com.shane.balloonpopper.Objects.GameObjects.GameBackGround;
 import com.shane.balloonpopper.Objects.MenuObjects.MenuBackGround;
 import com.shane.balloonpopper.Objects.MenuObjects.MenuButton;
-import com.shane.balloonpopper.OtherEngine.MenuThread;
+import com.shane.balloonpopper.Threads.MenuThread;
 import com.shane.balloonpopper.R;
 
 
@@ -37,9 +36,10 @@ public class MainMenuSurfaceView extends SurfaceView implements SurfaceHolder.Ca
 
         super(context);
         //add the callback to the surfaceHolder to intercept events
-        thread = new MenuThread(getHolder(), this);
-
         getHolder().addCallback(this);
+
+
+        thread = new MenuThread(getHolder(), this);
         setFocusable(true);
     }
 
@@ -86,6 +86,7 @@ public class MainMenuSurfaceView extends SurfaceView implements SurfaceHolder.Ca
         checkForCollision(event);
         return super.onTouchEvent(event);
     }
+
     public void checkForCollision(MotionEvent event){
 
         System.out.println("Pointer X: " + event.getX() + " Pointer Y: " + event.getY());

@@ -7,12 +7,11 @@ import android.graphics.Rect;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
-import android.os.AsyncTask;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-import com.shane.balloonpopper.OtherEngine.GameThread;
+import com.shane.balloonpopper.Threads.GameThread;
 import com.shane.balloonpopper.Objects.GameObjects.GameBackGround;
 import com.shane.balloonpopper.Objects.GameObjects.Balloon;
 import com.shane.balloonpopper.R;
@@ -24,8 +23,8 @@ import java.util.Random;
  * Created by Shane on 14/12/2015.
  */
 public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
-    private MediaPlayer pop;
-    private int soundID;
+    private SoundPool popSoundPool;
+    private int popID;
     private GameThread thread;
     private GameBackGround bg;
     private Balloon balloon;
@@ -80,6 +79,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         scaleFactorX = getWidth() / (WIDTH * 1.f);
         scaleFactorY = getHeight() / (HEIGHT * 1.f);
 
+        popSoundPool = new SoundPool(10, AudioManager.STREAM_MUSIC, 0);
+        popID = popSoundPool.load(getContext(), R.raw.pop, 1);
+
         //Start the game loop here
         thread.setRunning(true);
         thread.start();
@@ -101,7 +103,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             if (collision((balloons.get(i).getRectangle()), (int) event.getX() / scaleFactorX, (int) event.getY() / scaleFactorY)) {
                 System.out.println("Collision detected");
                 balloons.remove(i);
-
+                popSoundPool.play(popID, 1, 1, 1, 0, 1);
                 score++;
                 break;
             } else {
@@ -120,7 +122,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     public void addBalloons() {
         long balloonElapsed = (System.nanoTime() - balloonStartTime) / million;
-        if (balloonElapsed > 20000 / score) {
+        if (balloonElapsed > 200 / score) {
             int x = rand.nextInt(WIDTH);
             balloons.add(new Balloon(x, HEIGHT + 50, 80, 90, score, BitmapFactory.decodeResource(getResources(), R.drawable
                     .balloon_blue)));//adds new
