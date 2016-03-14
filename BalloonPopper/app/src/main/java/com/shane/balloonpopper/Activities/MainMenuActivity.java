@@ -13,12 +13,13 @@ public class MainMenuActivity extends Activity {
     /*
     These activities will call a surfaceview which then
      */
+    MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 System.out.println("1");
         super.onCreate(savedInstanceState);
 
-        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.song);
+        mediaPlayer = MediaPlayer.create(this, R.raw.song);
         mediaPlayer.start();
         //Turn title off
         requestWindowFeature(Window.FEATURE_NO_TITLE);

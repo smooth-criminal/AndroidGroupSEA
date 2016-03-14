@@ -57,7 +57,6 @@ public class Balloon  extends GameObject{
         int srcX = currentFrame * width;
         src.set(srcX, srcY, srcX + width, srcY + height);
         dst.set(x, y, x + width, y + height);
-
         canvas.drawBitmap(image, src, dst, null);
     }
 
