@@ -11,6 +11,7 @@ import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.ImageView;
+import android.content.res.AssetManager;
 
 import com.shane.balloonpopper.FileInputOutput.RandomBalloon;
 import com.shane.balloonpopper.OtherEngine.GameThread;
@@ -18,6 +19,7 @@ import com.shane.balloonpopper.Objects.GameObjects.GameBackGround;
 import com.shane.balloonpopper.Objects.GameObjects.Balloon;
 import com.shane.balloonpopper.R;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
@@ -41,6 +43,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private Random rand;
     private int score;
     private ImageView mImageView;
+    private AssetManager assMan;
 
 
    // private imageView view;
@@ -127,16 +130,12 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         }
     }
 
-    public void addBalloons(){
+    public void addBalloons() throws IOException {
         long balloonElapsed = (System.nanoTime()-balloonStartTime)/million;
         if(balloonElapsed>20000/score){
 
-
-
             //PROBLEM BELOW:make sure balloons cannot be too wide as cuts off lots of balloon
-
-
-
+            
             /*        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\green_balloon");
             balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\lightblue_balloon");
             balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\pink_balloon");
@@ -149,22 +148,38 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
            // Drawable d = getResources().getDrawable(balloonRandom[]);
 
+/*
 
+            AssetManager aMan = appContext.getAssets();
+            String[] filelist = aMan.list("");
 
+            assMan = getResources().getAssets();
+            String[] files =
+
+            TypedArray images = getResources().getAssets()obtainTypedArray(R.array.randBalloons);
+            int choice = (int) (Math.random() * images.length());
+            mImageView.setImageResource(images.getResourceId(choice, R.drawable.pink_balloon));
+            images.recycle();
 
             TypedArray images = getResources().obtainTypedArray(R.array.randBalloons);
             int choice = (int) (Math.random() * images.length());
             mImageView.setImageResource(images.getResourceId(choice, R.drawable.pink_balloon));
             images.recycle();
+*/
 
 
-           // balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory
-           //        .decodeByteArray(balloonRandom, 0, balloonRandom.length)));
 
-            //balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory.decodeResource(
-            //(getResources(), R.drawable.pink_balloon)));//adds new
 
-            //balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapDrawable.createFromPath()
+            balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory
+                   .decodeByteArray(balloonRandom, 0, balloonRandom.length)));
+
+           // balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory.decodeResource(
+           // (getResources(), R.drawable.pink_balloon))));
+
+            //adds new
+
+         //  balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapDrawable
+         //          .createFromPath("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi")));
 
            // URL imageUrl = this.getClass().getResource("/drawable/green_balloon.png");
            // .setIcon(new javax.swing.ImageIcon(imageUrl));
@@ -180,6 +195,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         bg.update();
         for(int i =0; i<balloons.size(); i++){
             balloons.get(i).update();
+
             }
         addBalloons();
         //balloons.add(new Balloon(200, 200, 50, 50, score, BitmapFactory.decodeResource(getResources(), R.drawable.balloon_blue)));//adds new
@@ -191,11 +207,11 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     for(int i = 0; i<balloons.size();i++)
     {
-        //update missile
+        //update balloon
         balloons.get(i).update();
 
 
-        //remove missile if it is way off the screen
+        //remove any balloons lower than Y value to remove them as they are now off screen
         if(balloons.get(i).getY()<-200)
         {
             balloons.remove(i);

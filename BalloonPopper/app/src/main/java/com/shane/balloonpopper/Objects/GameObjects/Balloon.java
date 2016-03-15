@@ -3,6 +3,7 @@ package com.shane.balloonpopper.Objects.GameObjects;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -17,7 +18,7 @@ public class Balloon  extends GameObject{
     private Random randomGenerator;
     ArrayList<String> balloonRandom = new ArrayList<String>();
 
-    public Balloon(int x, int y, int width, int height, int score, Bitmap image) {
+    public Balloon(int x, int y, int width, int height, int score, Drawable image) {
 
         this.x = x;
         this.y = y;
@@ -42,6 +43,7 @@ public class Balloon  extends GameObject{
         canvas.drawBitmap(image, x, y, null);
     }
 
+/*
 
     public void createBalloonArray() {
 
@@ -54,6 +56,7 @@ public class Balloon  extends GameObject{
         balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\yellow_balloon");
 
     }
+*/
 
 
     /*public RandomBalloon()
