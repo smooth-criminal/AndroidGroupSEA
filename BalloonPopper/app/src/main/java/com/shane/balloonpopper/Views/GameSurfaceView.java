@@ -43,13 +43,6 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     public int million = 1000000;
     private Random rand;
     private int score;
-    private ImageView mImageView;
-    private AssetManager assMan;
-
-
-   // private imageView view;
-   // final  byte[] data = dataStream.toByteArray();
-   // final  Bitmap bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
 
     float scaleFactorX;
     float scaleFactorY;
@@ -135,40 +128,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         long balloonElapsed = (System.nanoTime()-balloonStartTime)/million;
         if(balloonElapsed>2000/score){
 
-            //PROBLEM BELOW:make sure balloons cannot be too wide as cuts off lots of balloon
-
-            /*        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\green_balloon");
-            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\lightblue_balloon");
-            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\pink_balloon");
-            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\purple_balloon");
-            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\red_balloon");
-            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\turquoise_balloon");
-            balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\yellow_balloon");*/
-
             int x = rand.nextInt(WIDTH);
 
-           // Drawable d = getResources().getDrawable(balloonRandom[]);
-
-/*
-
-            AssetManager aMan = appContext.getAssets();
-            String[] filelist = aMan.list("");
-
-            assMan = getResources().getAssets();
-            String[] files =
-
-            TypedArray images = getResources().getAssets()obtainTypedArray(R.array.randBalloons);
-            int choice = (int) (Math.random() * images.length());
-            mImageView.setImageResource(images.getResourceId(choice, R.drawable.pink_balloon));
-            images.recycle();
-
-            TypedArray images = getResources().obtainTypedArray(R.array.randBalloons);
-            int choice = (int) (Math.random() * images.length());
-            mImageView.setImageResource(images.getResourceId(choice, R.drawable.pink_balloon));
-            images.recycle();
-*/
-
-
+            //i make it rain like its no ones business
 
             int random = rand.nextInt(7);
             switch (random) {
@@ -200,25 +162,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
                     balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, getResources()
                             .getDrawable(R.drawable.turquoise_balloon)));
                     break;
-
-
             }
 
-
-           /* balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory
-                   .decodeFile(R.drawable.class)));*/
-
-          //  balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory.decodeResource(
-            //        (getResources().obtainTypedArray(R.array.randBalloons)))));
-
-            //adds new
-
-         //  balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapDrawable
-         //          .createFromPath("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi")));
-
-           // URL imageUrl = this.getClass().getResource("/drawable/green_balloon.png");
-           // .setIcon(new javax.swing.ImageIcon(imageUrl));
-            // balloon to array of balloons, where x is random within screen range, and y is offscreen.
             balloonStartTime=System.nanoTime();
 
         }
@@ -238,10 +183,6 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             e.printStackTrace();
         }
 
-        //balloons.add(new Balloon(200, 200, 50, 50, score, BitmapFactory.decodeResource(getResources(), R.drawable.balloon_blue)));//adds new
-        // balloon to array of balloons, where x is random within screen range, and y is offscreen.
-
-        // score.setScore((score.getScore()+1));
 
 
 
@@ -258,18 +199,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         }
     }
 }
-/*
-public void createBalloonArray(){
-    balloonRandom = {
-            R.drawable.yellow_balloon,
-            R.drawable.green_balloon,
-            R.drawable.lightblue_balloon,
-            R.drawable.pink_balloon,
-            R.drawable.turquoise_balloon,
-            R.drawable.red_balloon,
-            R.drawable.purple_balloon,
-    };
-}*/
+
 
     @Override
     public void draw(Canvas canvas){
