@@ -110,8 +110,10 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         long balloonElapsed = (System.nanoTime()-balloonStartTime)/million;
         if(balloonElapsed>20000/score){
             int x = rand.nextInt(WIDTH);
-            balloons.add(new Balloon(x, HEIGHT+50, 80, 90, score, BitmapFactory.decodeResource(getResources(), R.drawable
-                    .balloon_blue)));//adds new
+            balloons.add(new Balloon(x, HEIGHT + 50, 80, 90, score, BitmapFactory.decodeResource
+                    (getResources(), R.drawable.balloon_blue)));//adds new
+
+            
             // balloon to array of balloons, where x is random within screen range, and y is offscreen.
             balloonStartTime=System.nanoTime();
         }
