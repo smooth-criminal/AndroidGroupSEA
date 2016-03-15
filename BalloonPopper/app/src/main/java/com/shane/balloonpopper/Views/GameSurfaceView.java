@@ -133,10 +133,10 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     public void addBalloons() throws IOException {
         long balloonElapsed = (System.nanoTime()-balloonStartTime)/million;
-        if(balloonElapsed>20000/score){
+        if(balloonElapsed>2000/score){
 
             //PROBLEM BELOW:make sure balloons cannot be too wide as cuts off lots of balloon
-            
+
             /*        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\green_balloon");
             balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\lightblue_balloon");
             balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\pink_balloon");
@@ -170,6 +170,40 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
 
 
+            int random = rand.nextInt(7);
+            switch (random) {
+                case 0:
+                    balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, getResources()
+                            .getDrawable(R.drawable.yellow_balloon)));
+                    break;
+                case 1:
+                    balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, getResources()
+                            .getDrawable(R.drawable.green_balloon)));
+                    break;
+                case 2:
+                    balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, getResources()
+                            .getDrawable(R.drawable.red_balloon)));
+                    break;
+                case 3:
+                    balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, getResources()
+                            .getDrawable(R.drawable.lightblue_balloon)));
+                    break;
+                case 4:
+                    balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, getResources()
+                            .getDrawable(R.drawable.pink_balloon)));
+                    break;
+                case 5:
+                    balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, getResources()
+                            .getDrawable(R.drawable.purple_balloon)));
+                    break;
+                case 6:
+                    balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, getResources()
+                            .getDrawable(R.drawable.turquoise_balloon)));
+                    break;
+
+
+            }
+
 
            /* balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory
                    .decodeFile(R.drawable.class)));*/
@@ -198,7 +232,11 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             balloons.get(i).update();
 
             }
-        addBalloons();
+        try {
+            addBalloons();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
 
         //balloons.add(new Balloon(200, 200, 50, 50, score, BitmapFactory.decodeResource(getResources(), R.drawable.balloon_blue)));//adds new
         // balloon to array of balloons, where x is random within screen range, and y is offscreen.
@@ -217,7 +255,6 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         if(balloons.get(i).getY()<-200)
         {
             balloons.remove(i);
-            break;
         }
     }
 }
