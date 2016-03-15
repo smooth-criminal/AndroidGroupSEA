@@ -13,6 +13,7 @@ import android.view.SurfaceView;
 import android.widget.ImageView;
 import android.content.res.AssetManager;
 
+
 import com.shane.balloonpopper.FileInputOutput.RandomBalloon;
 import com.shane.balloonpopper.OtherEngine.GameThread;
 import com.shane.balloonpopper.Objects.GameObjects.GameBackGround;
@@ -170,11 +171,11 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
 
 
-            balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory
-                   .decodeByteArray(balloonRandom, 0, balloonRandom.length)));
+           /* balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory
+                   .decodeFile(R.drawable.class)));*/
 
-           // balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory.decodeResource(
-           // (getResources(), R.drawable.pink_balloon))));
+          //  balloons.add(new Balloon(x, HEIGHT + 150, 80, 90, score, BitmapFactory.decodeResource(
+            //        (getResources().obtainTypedArray(R.array.randBalloons)))));
 
             //adds new
 
@@ -198,6 +199,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
             }
         addBalloons();
+
         //balloons.add(new Balloon(200, 200, 50, 50, score, BitmapFactory.decodeResource(getResources(), R.drawable.balloon_blue)));//adds new
         // balloon to array of balloons, where x is random within screen range, and y is offscreen.
 
