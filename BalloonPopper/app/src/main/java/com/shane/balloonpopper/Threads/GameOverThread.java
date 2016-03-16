@@ -3,25 +3,25 @@ package com.shane.balloonpopper.Threads;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import com.shane.balloonpopper.SurfaceViews.GameSurfaceView;
+import com.shane.balloonpopper.SurfaceViews.GameOverSurfaceView;
 
 /**
- * Created by Shane on 14/12/2015.
+ * Created by Shane on 10/03/2016.
  */
-public class GameThread extends Thread {
+public class GameOverThread extends Thread {
 
     private final int FPS = 30;
     private double averageFPS;
     private SurfaceHolder surfaceHolder;
-    private GameSurfaceView gameSV;
+    private GameOverSurfaceView gameOverSV;
     private boolean running;
     public static Canvas canvas;
     public final int million = 1000000;//I'll be using million a lot, so I just want to make sure I don't have to check everytime if I made a typo.
 
-    public GameThread(SurfaceHolder surfaceHolder, GameSurfaceView gameSV) {
+    public GameOverThread(SurfaceHolder surfaceHolder, GameOverSurfaceView menuSV) {
         super();
         this.surfaceHolder = surfaceHolder;
-        this.gameSV = gameSV;
+        this.gameOverSV = menuSV;
     }
 
     @Override
@@ -40,8 +40,8 @@ public class GameThread extends Thread {
             try {
                 canvas = this.surfaceHolder.lockCanvas();
                 synchronized (surfaceHolder) {
-                    this.gameSV.update();
-                    this.gameSV.draw(canvas);
+                    this.gameOverSV.update();
+                    this.gameOverSV.draw(canvas);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -75,6 +75,4 @@ public class GameThread extends Thread {
     public void setRunning(Boolean b) {
         running = b;
     }
-
-
 }

@@ -19,8 +19,9 @@ public class MainMenuActivity extends Activity {
 System.out.println("1");
         super.onCreate(savedInstanceState);
 
-        mediaPlayer = MediaPlayer.create(this, R.raw.song);
-        mediaPlayer.start();
+            mediaPlayer = MediaPlayer.create(this, R.raw.song);
+            mediaPlayer.start();
+
         //Turn title off
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 

@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.shane.balloonpopper.Views.GameOverSurfaceView;
-import com.shane.balloonpopper.Views.MainMenuSurfaceView;
+import com.shane.balloonpopper.SurfaceViews.GameOverSurfaceView;
 
 /**
  * Created by eddy2 on 16/03/2016.

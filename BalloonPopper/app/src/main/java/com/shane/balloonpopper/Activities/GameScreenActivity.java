@@ -32,7 +32,6 @@ public class GameScreenActivity extends Activity{
 
         setContentView(new GameSurfaceView(this));
 
-
     }
 
     public void setupSound(){
