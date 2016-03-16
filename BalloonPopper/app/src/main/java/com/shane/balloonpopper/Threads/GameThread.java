@@ -76,5 +76,4 @@ public class GameThread extends Thread {
         running = b;
     }
 
-
 }

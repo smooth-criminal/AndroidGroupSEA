@@ -14,15 +14,16 @@ import java.util.Random;
 public class MenuButton extends GameObject {
 
 
-    public MenuButton(int x, int y, int width, int height, Bitmap image) {
+    public MenuButton(int x, int y, Bitmap image) {
 
         this.x = x;
         this.y = y;
-        this.width=width;
-        this.height=height;
 
         this.image=image;
+        this.width = image.getWidth();
+        this.height = image.getHeight();
         bounds = new Rect(x, y, width+x, y+height);
+
     }
 
     public Rect getRectangle(){

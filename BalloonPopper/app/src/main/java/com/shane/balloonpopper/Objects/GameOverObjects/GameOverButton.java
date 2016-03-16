@@ -16,8 +16,8 @@ public class GameOverButton extends GameObject {
 
         this.x = x;
         this.y = y;
-        this.width=width;
-        this.height=height;
+        this.width = image.getWidth();
+        this.height = image.getHeight();
 
         this.image=image;
         bounds = new Rect(x, y, width+x, y+height);

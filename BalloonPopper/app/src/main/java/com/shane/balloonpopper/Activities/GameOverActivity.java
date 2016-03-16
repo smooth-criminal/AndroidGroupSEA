@@ -10,6 +10,10 @@ import com.shane.balloonpopper.SurfaceViews.GameOverSurfaceView;
 /**
  * Created by eddy2 on 16/03/2016.
  */
+/*
+Edward:
+This activity is essentially a springboard so we can get to the gameover Surface View
+ */
 public class GameOverActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +26,6 @@ public class GameOverActivity extends Activity{
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         setContentView(new GameOverSurfaceView(this));
-
 
     }
 }

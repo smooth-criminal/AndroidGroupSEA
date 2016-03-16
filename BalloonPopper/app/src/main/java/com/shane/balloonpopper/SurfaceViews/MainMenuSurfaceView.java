@@ -46,7 +46,7 @@ public class MainMenuSurfaceView extends SurfaceView implements SurfaceHolder.Ca
 
         System.out.println("HELLO");
         bg = new MenuBackGround(BitmapFactory.decodeResource(getResources(), (R.drawable.mainmenubackground)));
-        butt = new MenuButton(50, 1000, 500, 500, BitmapFactory.decodeResource(getResources(), (R.drawable.startgamebutton)));
+        butt = new MenuButton(50, 1000, BitmapFactory.decodeResource(getResources(), (R.drawable.startgamebutton)));
         scaleFactorX = getWidth()/(WIDTH*1.f);
         scaleFactorY = getHeight()/(HEIGHT*1.f);
 

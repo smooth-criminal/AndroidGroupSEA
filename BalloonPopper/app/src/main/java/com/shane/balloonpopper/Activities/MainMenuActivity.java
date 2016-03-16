@@ -8,7 +8,9 @@ import android.view.WindowManager;
 
 import com.shane.balloonpopper.R;
 import com.shane.balloonpopper.SurfaceViews.MainMenuSurfaceView;
-
+/*
+Shane
+ */
 public class MainMenuActivity extends Activity {
     /*
     These activities will call a surfaceview which then
@@ -16,11 +18,12 @@ public class MainMenuActivity extends Activity {
     MediaPlayer mediaPlayer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-System.out.println("1");
+        System.out.println("1");
         super.onCreate(savedInstanceState);
 
-            mediaPlayer = MediaPlayer.create(this, R.raw.song);
-            mediaPlayer.start();
+        mediaPlayer = MediaPlayer.create(this, R.raw.song);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
 
         //Turn title off
         requestWindowFeature(Window.FEATURE_NO_TITLE);

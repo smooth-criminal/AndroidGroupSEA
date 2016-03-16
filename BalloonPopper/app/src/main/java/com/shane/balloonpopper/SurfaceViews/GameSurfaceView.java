@@ -13,7 +13,6 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.shane.balloonpopper.Activities.GameOverActivity;
-import com.shane.balloonpopper.Activities.MainMenuActivity;
 import com.shane.balloonpopper.Objects.GameObjects.Balloon;
 import com.shane.balloonpopper.Objects.GameObjects.GameBackGround;
 import com.shane.balloonpopper.R;
@@ -117,9 +116,6 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         checkForCollision(event);
         return super.onTouchEvent(event);
     }
-
-
-
 
 
     public void checkForCollision(MotionEvent event){
@@ -275,11 +271,6 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             canvas.restoreToCount(savedState);//returns to unscaled dimensions
         }
     }
-
-
-
-
-
 }
 
 

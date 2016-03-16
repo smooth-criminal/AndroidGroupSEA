@@ -8,6 +8,9 @@ import android.graphics.drawable.Drawable;
 /**
  * Created by eddy2 on 15/03/2016.
  */
+/*
+Shane
+ */
 public class Button extends GameObject{
 
     BitmapDrawable temp;

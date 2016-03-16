@@ -44,7 +44,7 @@ public class GameOverSurfaceView extends SurfaceView implements SurfaceHolder.Ca
         System.out.println("Game Over!");
         bg = new GameOverBackGround(BitmapFactory.decodeResource(getResources(), (R.drawable
                 .gameoverbackground)));
-        buttan = new GameOverButton(250, 1000, 900, 300, BitmapFactory.decodeResource(getResources()
+        buttan = new GameOverButton(150, 1500, 900, 300, BitmapFactory.decodeResource(getResources()
                 , (R.drawable.backtomenu)));
         scaleFactorX = getWidth()/(WIDTH*1.f);
         scaleFactorY = getHeight()/(HEIGHT*1.f);
@@ -77,7 +77,6 @@ public class GameOverSurfaceView extends SurfaceView implements SurfaceHolder.Ca
 
     @Override
     public boolean onTouchEvent(MotionEvent event){
-
         checkForCollision(event);
         return super.onTouchEvent(event);
     }

@@ -16,7 +16,18 @@ import com.shane.balloonpopper.SurfaceViews.GameSurfaceView;
 public class GameScreenActivity extends Activity{
     private SoundPool soundPool;
     private int soundID;
+/*
+Shane
+ */
+    /*
+    IMPORTANT NOTE FOR PHIL:
+    FOR THE FIRST PART OF DEVELOPMENT, MYSELF AND EDWARD FOLLOWED A TUTORIAL ON YOUTUBE AS TO HOW
+     TO CREATE A 2D ANDROID GAME(LINK BELOW:
+    https://www.youtube.com/watch?v=rJcm5Oyi3YA&ab_channel=paymonwang-lotfi
 
+    THIS HELPED US CREATE SOMETHING WE COULD WORK OFF OF, AS WE FOUND GAGE TOO CHALLENGING TO
+    WORK WITH, ESPECIALLY IN THE EARLY DAYS.
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
