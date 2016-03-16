@@ -132,9 +132,11 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
                 System.out.println("Collision detected");
                 popSoundPool.play(popID, 1, 1, 1, 0, 1);
                 balloons.get(i).setPop(1);
-                balloons.get(i).setSpeed(0);
+//                balloons.get(i).bounds
                 balloons.get(i).update();
+//                balloons.remove(i);
                 score++;
+                ctimer.cancel();
                 ctimer = new CountDownTimer(30000, 1000) {
 
                     public void onTick(long millisUntilFinished) {

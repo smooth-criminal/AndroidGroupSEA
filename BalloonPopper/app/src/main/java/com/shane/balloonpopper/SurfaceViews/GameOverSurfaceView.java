@@ -72,6 +72,7 @@ public class GameOverSurfaceView extends SurfaceView implements SurfaceHolder.Ca
 
     public void update(){
         bg.update();
+        buttan.update();
     }
 
     @Override

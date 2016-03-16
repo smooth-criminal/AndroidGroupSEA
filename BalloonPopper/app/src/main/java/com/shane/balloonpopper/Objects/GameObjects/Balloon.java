@@ -62,6 +62,10 @@ public class Balloon  extends GameObject{
             currentFrame = ++currentFrame%5;
         }
     }
+
+    public void changeBounds(){
+
+    }
     public void draw(Canvas canvas){
         int srcY = pop * height;
         int srcX = currentFrame * width;
