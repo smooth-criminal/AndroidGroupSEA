@@ -1,11 +1,20 @@
 package com.shane.balloonpopper.Objects.GameObjects;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 
+<<<<<<< HEAD
 import com.shane.balloonpopper.SurfaceViews.GameSurfaceView;
 
+=======
+import com.shane.balloonpopper.R;
+
+import java.util.ArrayList;
+>>>>>>> refs/remotes/origin/Edward-Branch
 import java.util.Random;
 
 /**
@@ -18,6 +27,7 @@ public class Balloon  extends GameObject{
 
     private int speed;
     private Random rand = new Random();
+<<<<<<< HEAD
     private int currentFrame = 0;
     private int pop;
     private Rect src, dst;
@@ -36,6 +46,24 @@ public class Balloon  extends GameObject{
         src = new Rect(0, 0, 0, 0);
         dst = new Rect(0, 0, 0, 0);
 
+=======
+    BitmapDrawable temp;
+    private Random randomGenerator;
+    ArrayList<String> balloonRandom = new ArrayList<String>();
+
+    public Balloon(int x, int y, int width, int height, int score, Drawable image) {
+
+        this.x = x;
+        this.y = y;
+        this.width=width;
+        this.height=height;
+        temp = new BitmapDrawable();
+        temp = (BitmapDrawable) image;
+        this.image = temp.getBitmap();
+        bounds = new Rect(x, y, width+x, y+height);
+
+        speed = 3+(int) (rand.nextDouble()*score/30);//speed increases as score increases
+>>>>>>> refs/remotes/origin/Edward-Branch
         //cap balloon speed
         if(speed>=40) {speed=40;}
     }
@@ -65,6 +93,4 @@ public class Balloon  extends GameObject{
         //0 = normal animation
         pop = x;
     }
-
-
 }
