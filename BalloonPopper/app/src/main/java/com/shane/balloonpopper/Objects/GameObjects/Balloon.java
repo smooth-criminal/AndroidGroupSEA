@@ -53,18 +53,20 @@ public class Balloon  extends GameObject{
     public void update(){
         //Balloon will travel upwards
         y=y-speed;
-        bounds.set(x, y, width + x, y + height);
         if(pop==1){
             if(currentFrame<=4){
                 currentFrame =  ++currentFrame;
+                changeBounds();
             }
         }else{
             currentFrame = ++currentFrame%5;
+            bounds.set(x, y, width + x, y + height);
         }
     }
 
-    public void changeBounds(){
 
+    public void changeBounds(){
+        bounds.set(-x, y, 5, 5);
     }
     public void draw(Canvas canvas){
         int srcY = pop * height;
