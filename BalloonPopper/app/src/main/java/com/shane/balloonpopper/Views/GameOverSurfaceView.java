@@ -23,8 +23,7 @@ public class GameOverSurfaceView extends SurfaceView implements SurfaceHolder.Ca
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         System.out.println("Game Over!");
-        Intent i = new Intent().setClass(getContext(), GameScreenActivity.class);
-        getContext().startActivity(i);
+        
     }
 
     @Override
