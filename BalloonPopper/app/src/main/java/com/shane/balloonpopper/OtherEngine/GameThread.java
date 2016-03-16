@@ -76,4 +76,6 @@ public class GameThread extends Thread {
     public void setRunning(Boolean b) {
         running = b;
     }
+
+
 }
