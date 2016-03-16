@@ -33,7 +33,7 @@ public class Balloon  extends GameObject{
         this.image = temp.getBitmap();
         bounds = new Rect(x, y, width+x, y+height);
 
-        speed = 7+(int) (rand.nextDouble()*score/30);//speed increases as score increases
+        speed = 3+(int) (rand.nextDouble()*score/30);//speed increases as score increases
         //cap balloon speed
         if(speed>=40) {speed=40;}
     }
@@ -47,35 +47,4 @@ public class Balloon  extends GameObject{
     public void draw(Canvas canvas){
         canvas.drawBitmap(image, x, y, null);
     }
-
-
-
-    public void createBalloonArray() {
-
-        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\green_balloon");
-        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\lightblue_balloon");
-        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\pink_balloon");
-        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\purple_balloon");
-        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\red_balloon");
-        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\turquoise_balloon");
-        balloonRandom.add("BalloonPopper\\app\\src\\main\\res\\drawable-nodpi\\yellow_balloon");
-
-    }
-
-
-
-    public void RandomBalloon()
-    {
-        balloonRandom = new ArrayList<String>();
-        randomGenerator = new Random();
-    }
-
-    public String anyBalloon()
-    {
-        int index = randomGenerator.nextInt(balloonRandom.size());
-        String string = balloonRandom.get(index);
-        System.out.println("The " + string + " was used.");
-        return string;
-    }
-
 }

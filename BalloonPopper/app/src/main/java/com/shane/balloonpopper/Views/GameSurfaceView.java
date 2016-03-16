@@ -19,6 +19,7 @@ import com.shane.balloonpopper.OtherEngine.GameThread;
 import com.shane.balloonpopper.Objects.GameObjects.GameBackGround;
 import com.shane.balloonpopper.Objects.GameObjects.Balloon;
 import com.shane.balloonpopper.R;
+import com.shane.balloonpopper.Objects.GameObjects.Button;
 
 import java.io.IOException;
 import java.net.URL;
@@ -43,6 +44,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     public int million = 1000000;
     private Random rand;
     private int score;
+    private Button pause;
 
     float scaleFactorX;
     float scaleFactorY;
@@ -73,6 +75,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
      //   ImageView mImageView = new ImageView;
 
         bg = new GameBackGround(BitmapFactory.decodeResource(getResources(), (R.drawable.backgroundcloud)));
+        pause = new Button(WIDTH - 256,HEIGHT - 256,256,256, getResources()
+                .getDrawable(R
+                .drawable.pause));
         rand = new Random();
 
         balloons = new ArrayList<>();
@@ -92,9 +97,11 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     @Override
     public boolean onTouchEvent(MotionEvent event){
 
-           checkForCollision(event);
+        checkForCollision(event);
          return super.onTouchEvent(event);
     }
+
+
 
     public void checkForCollision(MotionEvent event){
 
@@ -113,6 +120,22 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         }
     }
 
+    public void checkForPause(MotionEvent event) {
+        System.out.println("Pointer X: " + event.getX() + " Pointer Y: " + event.getY());
+            //!!!!!!!!!!!!!!!!!!!!!!!!!!!COLLISION DETECTION!!!!!!!!!!!!!!!!!!!!!!!!!//
+            if(collision((pause.getRectangle()), (int)event.getX()/scaleFactorX, (int)event
+                    .getY()/scaleFactorY)){
+                System.out.println("Collision detected");
+              //  pause.pauseGame();
+            }else{
+                System.out.println("No collision detected.");
+            }
+        }
+
+    public void pauseGame(){
+
+    }
+
     public boolean collision(Rect rect, float xCoord, float yCoord){
         if(rect.contains((int)xCoord,(int) yCoord)){
             System.out.println("YEAH");
@@ -126,9 +149,9 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     public void addBalloons() throws IOException {
         long balloonElapsed = (System.nanoTime()-balloonStartTime)/million;
-        if(balloonElapsed>2000/score){
+        if(balloonElapsed>20000/score){
 
-            int x = rand.nextInt(WIDTH);
+            int x = rand.nextInt(WIDTH - 80) ;
 
             //i make it rain like its no ones business
 
@@ -212,6 +235,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
             for(int i =0; i<balloons.size(); i++){
                 balloons.get(i).draw(canvas);
             }
+            //Draw pause button here
+            pause.draw(canvas);
             canvas.restoreToCount(savedState);//returns to unscaled dimensions
         }
 
