@@ -4,7 +4,7 @@ package com.shane.balloonpopper.Objects.GameObjects;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 
-import com.shane.balloonpopper.Views.GameSurfaceView;
+import com.shane.balloonpopper.SurfaceViews.GameSurfaceView;
 
 public class GameBackGround {
 
