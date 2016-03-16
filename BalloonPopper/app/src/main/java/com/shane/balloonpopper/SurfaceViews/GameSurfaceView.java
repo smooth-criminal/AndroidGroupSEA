@@ -1,5 +1,7 @@
 package com.shane.balloonpopper.SurfaceViews;
 
+//Names correspond to the programmer of each method
+
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
@@ -56,6 +58,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         setFocusable(true);
     }
 
+
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
     }
@@ -74,6 +77,8 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         }
     }
 
+
+    //Shane
     @Override
     public void surfaceCreated(SurfaceHolder holder){
      //   ImageView mImageView = new ImageView;
@@ -111,6 +116,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         }.start();
     }
 
+    //Shane
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         checkForCollision(event);
@@ -118,6 +124,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     }
 
 
+    //Shane
     public void checkForCollision(MotionEvent event){
 
         System.out.println("Pointer X: " + event.getX() + " Pointer Y: " + event.getY());
@@ -174,6 +181,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     }
     */
 
+    //Shane
     public boolean collision(Rect rect, float xCoord, float yCoord){
         if(rect.contains((int)xCoord,(int) yCoord)){
             System.out.println("YEAH");
@@ -186,6 +194,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         }
     }
 
+    //Eddie
     public void addBalloons() throws IOException {
 
 
@@ -236,6 +245,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         }
     }
 
+    //Eddie 75/ Shane 25
     public void update() {
         bg.update();
         for (int i = 0; i < balloons.size(); i++) {
@@ -254,8 +264,7 @@ public class GameSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     }
 
-
-
+    //50 Edward /50 Shane
     @Override
     public void draw(Canvas canvas) {
         if (canvas != null) {
