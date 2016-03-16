@@ -1,4 +1,4 @@
-package com.shane.balloonpopper.Views;
+package com.shane.balloonpopper.SurfaceViews;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,11 +10,10 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.shane.balloonpopper.Activities.GameScreenActivity;
-import com.shane.balloonpopper.Objects.GameObjects.GameBackGround;
 import com.shane.balloonpopper.Objects.MenuObjects.MenuBackGround;
 import com.shane.balloonpopper.Objects.MenuObjects.MenuButton;
-import com.shane.balloonpopper.OtherEngine.MenuThread;
 import com.shane.balloonpopper.R;
+import com.shane.balloonpopper.Threads.MenuThread;
 
 
 /**
@@ -36,14 +35,15 @@ public class MainMenuSurfaceView extends SurfaceView implements SurfaceHolder.Ca
 
         super(context);
         //add the callback to the surfaceHolder to intercept events
-        thread = new MenuThread(getHolder(), this);
-
         getHolder().addCallback(this);
+        thread = new MenuThread(getHolder(), this);
         setFocusable(true);
     }
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
+
+
         System.out.println("HELLO");
         bg = new MenuBackGround(BitmapFactory.decodeResource(getResources(), (R.drawable.mainmenubackground)));
         butt = new MenuButton(50, 1000, 500, 500, BitmapFactory.decodeResource(getResources(), (R.drawable.startgamebutton)));
@@ -82,6 +82,7 @@ public class MainMenuSurfaceView extends SurfaceView implements SurfaceHolder.Ca
         checkForCollision(event);
         return super.onTouchEvent(event);
     }
+
     public void checkForCollision(MotionEvent event){
 
         System.out.println("Pointer X: " + event.getX() + " Pointer Y: " + event.getY());
@@ -97,12 +98,7 @@ public class MainMenuSurfaceView extends SurfaceView implements SurfaceHolder.Ca
 
 
     public boolean collision(Rect rect, float xCoord, float yCoord){
-        if(rect.contains((int)xCoord,(int) yCoord)){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return rect.contains((int) xCoord, (int) yCoord);
     }
     public void update(){
         bg.update();
@@ -116,7 +112,6 @@ public class MainMenuSurfaceView extends SurfaceView implements SurfaceHolder.Ca
             //DRAW HERE IN ORDER FROM BACK TO FRONT
             bg.draw(canvas);
             butt.draw(canvas);
-
 
             canvas.scale(scaleFactorX, scaleFactorY);//scales canvas to phone width
 

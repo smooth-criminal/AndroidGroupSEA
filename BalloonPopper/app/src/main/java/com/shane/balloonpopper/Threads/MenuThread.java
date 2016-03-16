@@ -1,9 +1,9 @@
-package com.shane.balloonpopper.OtherEngine;
+package com.shane.balloonpopper.Threads;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import com.shane.balloonpopper.Views.MainMenuSurfaceView;
+import com.shane.balloonpopper.SurfaceViews.MainMenuSurfaceView;
 
 /**
  * Created by Shane on 10/03/2016.
@@ -57,7 +57,7 @@ public class MenuThread extends Thread {
             timeMillis = (System.nanoTime() - startTime) / million;//Time it took to go through one frame of the game
             waitTime = targetTime - timeMillis;
             try {
-                this.sleep(waitTime);
+                sleep(waitTime);
             } catch (Exception e) {
             }
 

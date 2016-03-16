@@ -1,9 +1,9 @@
-package com.shane.balloonpopper.OtherEngine;
+package com.shane.balloonpopper.Threads;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import com.shane.balloonpopper.Views.GameSurfaceView;
+import com.shane.balloonpopper.SurfaceViews.GameSurfaceView;
 
 /**
  * Created by Shane on 14/12/2015.
@@ -56,7 +56,7 @@ public class GameThread extends Thread {
             timeMillis = (System.nanoTime() - startTime) / million;//Time it took to go through one frame of the game
             waitTime = targetTime - timeMillis;
             try {
-                this.sleep(waitTime);
+                sleep(waitTime);
             } catch (Exception e) {
             }
 
@@ -74,4 +74,6 @@ public class GameThread extends Thread {
     public void setRunning(Boolean b) {
         running = b;
     }
+
+
 }
